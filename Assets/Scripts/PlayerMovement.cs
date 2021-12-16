@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float velocity;
+    [SerializeField] private float speed;
+    [SerializeField] private float sideSpeed;
     private Vector3 movement;
     private Vector3 pos;
     // Start is called before the first frame update
@@ -19,16 +19,16 @@ public class PlayerMovement : MonoBehaviour
     {
         pos = transform.position;
         movement = new Vector3(0f, 0f, Input.GetAxis("Vertical"));
-        pos.z = Mathf.Clamp(pos.z, -2.5f, 2.5f); //returns min if z pos < min or returns max if z pos > max
+        pos.z = Mathf.Clamp(pos.z, -3f, 3f); //returns min if z pos < min or returns max if z pos > max
         transform.position = pos;
-        Debug.Log(movement);
+        //Debug.Log(movement);
         Move();
     }
 
     void Move()
     {
         //Debug.Log(this.transform.position);
-        Vector3 newPos = Vector3.right + movement;
-        transform.Translate(newPos * velocity * Time.deltaTime);
+        Vector3 newPos = speed*Vector3.right + sideSpeed*movement;
+        transform.Translate(newPos  * Time.deltaTime);
     }
 }
