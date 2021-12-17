@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         pos = transform.position;
-        movement = new Vector3(0f, 0f, Input.GetAxis("Vertical"));
+        movement = new Vector3(0f, 0f, -1*Input.GetAxis("Horizontal"));
         pos.z = Mathf.Clamp(pos.z, -4f, 4f); //returns min if z pos < min or returns max if z pos > max
         transform.position = pos;
         //Debug.Log(movement);
@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Debug.Log(this.transform.position);
         Vector3 newPos = speed*Vector3.right + sideSpeed*movement;
-        transform.Translate(newPos  * Time.deltaTime);
+        transform.position = transform.position + newPos*Time.deltaTime;
+        
     }
 }
