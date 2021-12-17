@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     {
         pos = transform.position;
         movement = new Vector3(0f, 0f, Input.GetAxis("Vertical"));
-        pos.z = Mathf.Clamp(pos.z, -3f, 3f); //returns min if z pos < min or returns max if z pos > max
+        pos.z = Mathf.Clamp(pos.z, -4f, 4f); //returns min if z pos < min or returns max if z pos > max
         transform.position = pos;
         //Debug.Log(movement);
         Move();
